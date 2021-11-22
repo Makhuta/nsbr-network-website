@@ -1,5 +1,4 @@
 const express = require("express")
-const cons = require('consolidate');
 const app = express()
 
 var port = process.env.PORT || 8080
@@ -12,20 +11,20 @@ app.use("/css", express.static(__dirname + "public/css"))
 app.use("/js", express.static(__dirname + "public/js"))
 app.use("/img", express.static(__dirname + "public/img"))
 
-app.get("/*", function(req, res) {
-    let site_path = req.path.slice(1) || "index"
-    console.log(site_path)
+app.param('site', function(req, res, next, site) {
+    req.site = site;
+    next();
+  });
+
+app.get("/:site", function(req, res) {
+    let site_path = req.site || "index"
+    let token = req.query.token
     res.render(site_path)
 })
 
-
-
-
-
-
-
-
 app.listen(port, () => console.info(`App listening on port: ${port}`))
+
+
 
 
 
