@@ -33,6 +33,7 @@ app.get("/*", async function(req, res) {
     if (site_path.length == 0) site_path = "index"
     let title = site_path.toLowerCase()
     let token = req.query.token
+    let default_site = `${req.protocol}://${req.headers.host}/`
 
     let site = `${title}.hbs`
 
@@ -40,10 +41,11 @@ app.get("/*", async function(req, res) {
         item_list: await item_list,
         site: "",
         res: res,
-        req: req
+        req: req,
+        default_site: default_site
     }
 
-
+    console.log(item_list_all)
     if (!hbs_item_list.all_files.includes(site)) {
         config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: "404.hbs" })
         require("./views/js/404").run(config)

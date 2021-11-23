@@ -35,7 +35,11 @@ module.exports = {
         let location = []
 
         for (let nf = 0; nf < hbs_dir_info.files.length; nf++) {
+            let f_name = hbs_dir_info.files[nf].split(".")[0]
+            let site_adress = hbs_dir_info.files[nf].slice(0, hbs_dir_info.files[nf].length - 4)
             location.push({
+                site_adress: site_adress,
+                name: f_name[0].toUpperCase() + f_name.slice(1),
                 file: hbs_dir_info.files[nf],
                 location: `${folder}hbs/${hbs_dir_info.files[nf]}`
             })
@@ -51,7 +55,11 @@ module.exports = {
         location = []
 
         for (let nf = 0; nf < js_dir_info.files.length; nf++) {
+            let f_name = js_dir_info.files[nf].split(".")[0]
+            let site_adress = js_dir_info.files[nf].slice(0, js_dir_info.files[nf].length - 3)
             location.push({
+                site_adress: site_adress,
+                name: f_name[0].toUpperCase() + f_name.slice(1),
                 file: js_dir_info.files[nf],
                 location: `${folder}js/${js_dir_info.files[nf]}`
             })
@@ -78,7 +86,11 @@ module.exports = {
             location = []
 
             for (let nf = 0; nf < hbs_subdir_info.files.length; nf++) {
+                let f_name = hbs_subdir_info.files[nf].split(".")[0].slice(current_folder.length + 1)
+                let site_adress = hbs_subdir_info.files[nf].slice(0, hbs_subdir_info.files[nf].length - 4)
                 location.push({
+                    site_adress: site_adress,
+                    name: f_name[0].toUpperCase() + f_name.slice(1),
                     file: `${hbs_subdir_info.files[nf]}`,
                     location: `${folder}hbs/${hbs_subdir_info.files[nf]}`
                 })
@@ -105,7 +117,11 @@ module.exports = {
             location = []
 
             for (let nf = 0; nf < js_subdir_info.files.length; nf++) {
+                let f_name = js_subdir_info.files[nf].split(".")[0].slice(current_folder.length + 1)
+                let site_adress = js_subdir_info.files[nf].slice(0, js_subdir_info.files[nf].length - 3)
                 location.push({
+                    site_adress: site_adress,
+                    name: f_name[0].toUpperCase() + f_name.slice(1),
                     file: `${js_subdir_info.files[nf]}`,
                     location: `${folder}js/${js_subdir_info.files[nf]}`
                 })
