@@ -1,4 +1,5 @@
 const express = require("express")
+const fs = require("fs")
 const app = express()
 
 var port = process.env.PORT || 8080
@@ -11,18 +12,34 @@ app.use("/css", express.static(__dirname + "public/css"))
 app.use("/js", express.static(__dirname + "public/js"))
 app.use("/img", express.static(__dirname + "public/img"))
 
-app.param('site', function(req, res, next, site) {
-    req.site = site;
-    next();
-  });
-
-app.get("/:site", function(req, res) {
-    let site_path = req.site || "index"
+app.get("/*", async function(req, res) {
+    let site_path = req._parsedOriginalUrl.pathname.slice(1)
+    if (site_path.length == 0) site_path = "index"
     let token = req.query.token
-    res.render(site_path)
+
+    let files = []
+    await new Promise((resolve, reject) => {
+        fs.readdir(__dirname + "/views", (err, f) => {
+            for (let i = 0; i < f.length; i++) {
+                let file = f[i]
+                files.push(file)
+                files.push(file.split(".")[0])
+            }
+            resolve(files)
+        })
+    })
+
+    if (site_path.includes("css") || site_path.includes("js")) {
+        res.end()
+        return
+    }
+
+    if (files.includes(site_path)) res.render(site_path)
+    else res.render("404")
 })
 
 app.listen(port, () => console.info(`App listening on port: ${port}`))
+
 
 
 
