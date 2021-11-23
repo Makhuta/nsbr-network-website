@@ -1,0 +1,21 @@
+body {
+    background-color: #bbbbbb;
+}
+
+.title_div {
+    background-color: #23272A;
+    display: table-cell;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.title_name {
+    display: table-cell;
+    vertical-align: middle;
+}
