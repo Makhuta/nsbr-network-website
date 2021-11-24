@@ -3,12 +3,27 @@ const hbs = require("express-handlebars")
 const fs = require("fs")
 const util = require("util")
 const app = express()
+const fetch = require('node-fetch');
+
+const delay_time = 600000
+
+var port = process.env.PORT || 8080
+var host = process.env.HOST
+
+
+
 
 var item_list = require("./src/files_to_json").run(__dirname)
 
-var port = process.env.PORT || 8080
+
 
 var layoutslozka = __dirname + "/layouts"
+
+setInterval(async function() {
+    if (!host) return
+    fetch(host)
+}, delay_time)
+
 
 app.engine("hbs", hbs.create({
     extname: "hbs",
@@ -25,6 +40,7 @@ app.use("/img", express.static(__dirname + "public/img"))
 
 
 app.get("/*", async function(req, res) {
+    console.log("Here")
     item_list = await item_list
     let item_list_all = util.inspect(item_list, false, null, true)
     let hbs_item_list = (await item_list).hbs
@@ -45,7 +61,7 @@ app.get("/*", async function(req, res) {
         default_site: default_site
     }
 
-    console.log(config)
+    //console.log(config)
     if (!hbs_item_list.all_files.includes(site)) {
         config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: "404.hbs" })
         require("./views/js/404").run(config)
