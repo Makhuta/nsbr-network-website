@@ -45,7 +45,7 @@ app.get("/*", async function(req, res) {
         default_site: default_site
     }
 
-    console.log(item_list_all)
+    console.log(config)
     if (!hbs_item_list.all_files.includes(site)) {
         config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: "404.hbs" })
         require("./views/js/404").run(config)
