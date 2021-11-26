@@ -40,7 +40,6 @@ app.use("/img", express.static(__dirname + "public/img"))
 
 
 app.get("/*", async function(req, res) {
-    console.log("Here")
     item_list = await item_list
     let item_list_all = util.inspect(item_list, false, null, true)
     let hbs_item_list = (await item_list).hbs
@@ -58,7 +57,8 @@ app.get("/*", async function(req, res) {
         site: "",
         res: res,
         req: req,
-        default_site: default_site
+        default_site: default_site,
+        token: token
     }
 
     //console.log(config)

@@ -1,5 +1,10 @@
 body {
-    background-color: #bbbbbb;
+    background-color: #2C2F33;
+}
+
+.text_formats {
+    color: white;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
 .title_div {
@@ -13,26 +18,37 @@ body {
     width: 100%;
 }
 
+.footer_div {
+    background-color: #23272A;
+    display: flex;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+}
+
 .title_subdiv {
+    display: table;
     position: relative;
     height: 100%;
     width: 50%;
-    border: 2px solid red;
 }
 
 .title_name {
-    display: table;
+    display: table-cell;
+    padding-left: 3%;
     text-align: left;
-    margin: 0 0 0 10px;
-    width: 100% - 10px;
+    vertical-align: middle;
+    width: fit-content;
     height: 100%;
-    vertical-align: text-top;
-    border: 2px solid white;
 }
 
 .title_items {
+    display: table-cell;
     text-align: right;
-    margin: 0;
+    padding-right: 3%;
+    vertical-align: middle;
     height: 100%;
-    width: 100%;
 }
