@@ -46,7 +46,7 @@ module.exports = {
         }
 
         let first_options = {
-            name: "default",
+            name: "default"[0].toUpperCase() + "default".slice(1),
             files: location
         }
 
@@ -66,7 +66,7 @@ module.exports = {
         }
 
         first_options = {
-            name: "default",
+            name: "default"[0].toUpperCase() + "default".slice(1),
             files: location
         }
 
@@ -96,7 +96,7 @@ module.exports = {
                 })
             }
             let options = {
-                name: current_folder,
+                name: current_folder[0].toUpperCase() + current_folder.slice(1),
                 files: location
             }
 
@@ -127,7 +127,7 @@ module.exports = {
                 })
             }
             let options = {
-                name: current_folder,
+                name: current_folder[0].toUpperCase() + current_folder.slice(1),
                 files: location
             }
 

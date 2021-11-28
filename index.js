@@ -34,9 +34,9 @@ app.engine("hbs", hbs.create({
 app.set("view engine", "hbs")
 
 app.use(express.static("public"))
-app.use("/css", express.static(__dirname + "public/css"))
-app.use("/js", express.static(__dirname + "public/js"))
-app.use("/img", express.static(__dirname + "public/img"))
+app.use("/css", express.static(__dirname + "/public/css"))
+app.use("/js", express.static(__dirname + "/public/js"))
+app.use("/img", express.static(__dirname + "/public/img"))
 
 
 app.get("/*", async function(req, res) {
@@ -61,6 +61,8 @@ app.get("/*", async function(req, res) {
         token: token
     }
 
+
+
     //console.log(config)
     if (!hbs_item_list.all_files.includes(site)) {
         config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: "404.hbs" })
@@ -74,6 +76,11 @@ app.get("/*", async function(req, res) {
 
     require(output_file).run(config)
 })
+
+
+
+
+
 
 
 

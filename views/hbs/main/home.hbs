@@ -1,7 +1,46 @@
 <body>
   <section>
     <div class="title_div">
-      <h2 class="title_name">NSBR Network HOME</h2>
+      <div class="title_subdiv">
+        <h2 class="title_name text_formats header_text_format"><a href="{{default_site}}">NSBR Network</a></h2>
+      </div>
+      <div class="title_subdiv">
+        <div class="space_filler"></div>
+
+        {{#each sites}}
+        <div class="title_items">
+          <div class="dropdown">
+            <h2 class="dropdown-btn">{{this.name}}</h2>
+            <div class="dropdown-content">
+              {{#each this.files}}
+              <a href="{{default_location}}/{{this.site_adress}}">{{this.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <iframe class="discord_widget" src="https://discord.com/widget?id=355369119358517250&theme=dark" width="350" height="500"
+      allowtransparency="true" frameborder="0"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+    <div class="footer_div">
+      <div class="footer_subdiv">
+        <footer class="copyright text_formats"> <small>© Copyright 2021, NSBR Network</small> </footer>
+      </div>
+      <div class="footer_subdiv">
+        <div class="space_filler"></div>
+        <div class="title_items">
+          <a href="https://www.facebook.com/groups/vlciherniskupina"><img class="sites_img" src="/img/facebook.png"
+              alt=""></a>
+        </div>
+        <div class="title_items">
+          <a href="http://discord.nsbrnetwork.net"><img class="sites_img" src="/img/discord.png" alt=""></a>
+        </div>
+
+      </div>
     </div>
   </section>
 </body>
