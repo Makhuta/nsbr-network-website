@@ -64,10 +64,9 @@ a {
 .title_items {
     display: table-cell;
     text-align: right;
-    padding-right: 3%;
     vertical-align: middle;
+    width: 0.001px;
     height: 100%;
-    width: 0;
     white-space: nowrap;
     padding-right: 20px;
 }
@@ -78,6 +77,7 @@ a {
 }
 
 .dropdown {
+    width: fit-content;
     display: inline-block;
     position: relative;
 }
@@ -115,9 +115,9 @@ a {
 }
 
 .sites_img {
-    margin: 10px 0 10px 0;
-    height: 60px;
-    width: 60px;
+    margin-top: 12px;
+    height: 55px;
+    width: 55px;
 }
 
 .copyright {
