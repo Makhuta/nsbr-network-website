@@ -1,4 +1,8 @@
 .discord_widget {
-    margin-top: 90px;
-    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 350px;
+    height: 500px;
+    margin-left: 100%;
+    transform: translateX(-100%);
 }

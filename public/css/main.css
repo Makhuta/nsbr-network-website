@@ -40,7 +40,6 @@ a {
     position: absolute;
     right: 0;
     left: 0;
-    bottom: 0;
     height: 80px;
     width: 100%;
 }
@@ -77,6 +76,7 @@ a {
 }
 
 .dropdown {
+    z-index: 999;
     width: fit-content;
     display: inline-block;
     position: relative;
@@ -118,6 +118,13 @@ a {
     margin-top: 12px;
     height: 55px;
     width: 55px;
+}
+
+.content_div {
+    display: flexbox;
+    padding-top: 80px;
+    width: 100%;
+    min-height: 769px
 }
 
 .copyright {
