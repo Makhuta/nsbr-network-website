@@ -14,6 +14,7 @@ var host = process.env.HOST
 
 
 var item_list = require("./src/files_to_json").run(__dirname)
+var language_list = require("./src/language_to_json").run(__dirname)
 
 
 
@@ -41,13 +42,17 @@ app.use("/img", express.static(__dirname + "/public/img"))
 
 app.get("/*", async function(req, res) {
     item_list = await item_list
+    language_list = await language_list
     let item_list_all = util.inspect(item_list, false, null, true)
+    let languagem_list_all = util.inspect(language_list, false, null, true)
     let hbs_item_list = (await item_list).hbs
     let js_item_list = (await item_list).js
     let site_path = req._parsedOriginalUrl.pathname.slice(1).split(".")[0]
-    if (site_path.length == 0) site_path = "index"
+    if (site_path.length == 0) site_path = "home"
     let title = site_path.toLowerCase()
     let token = req.query.token
+    let language = req.query.lang
+    if (!(await language_list).all_langs.includes(language)) language = "Czech"
     let default_site = `${req.protocol}://${req.headers.host}/`
 
     let site = `${title}.hbs`
@@ -58,17 +63,18 @@ app.get("/*", async function(req, res) {
         res: res,
         req: req,
         default_site: default_site,
-        token: token
+        token: token,
+        language: language
     }
 
-
-
-    //console.log(config)
     if (!hbs_item_list.all_files.includes(site)) {
         config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: "404.hbs" })
         require("./views/js/404").run(config)
         return
     }
+
+    console.log(language)
+
 
     config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: site })
 
