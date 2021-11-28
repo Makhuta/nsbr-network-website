@@ -73,7 +73,7 @@ app.get("/*", async function(req, res) {
         return
     }
 
-    console.log(language)
+    //console.log(language)
 
 
     config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: site })
