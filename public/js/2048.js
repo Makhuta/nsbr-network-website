@@ -1,9 +1,9 @@
-var ongoingTouches = [];
+var highscore = 0;
 
 var gameObj = {
     points: {
         score: 0,
-        history: [],
+        highscore: highscore,
         status: 1
     },
     stage: [],
@@ -98,6 +98,12 @@ var gameObj = {
         obj2.boxObj.domObj.textContent = obj2.boxObj.value;
         this.points.score += obj2.boxObj.value;
         var scoreBar = document.getElementById('score');
+        var highscoreBar = document.getElementById('highscore');
+        if (this.points.score > this.points.highscore) {
+            this.points.highscore = highscore = this.points.score
+            highscoreBar.innerText = this.points.score;
+            highscoreBar.textContent = this.points.score;
+        }
         scoreBar.innerText = this.points.score;
         scoreBar.textContent = this.points.score;
         return obj2.boxObj.value;
@@ -186,6 +192,20 @@ var gameObj = {
         }
         if (add) {
             var addscore = document.getElementById('addScore');
+            var addhighscore = document.getElementById('addHighScore');
+            var scoreBar = document.getElementById('score');
+            var highscoreBar = document.getElementById('highscore');
+            var scoreBarvalue = Number(scoreBar.innerText);
+            var highscoreBarvalue = Number(highscoreBar.innerText);
+            if (scoreBarvalue >= highscoreBarvalue) {
+                let highscoreadd = (scoreBarvalue + Number(add)) - highscoreBarvalue
+                addhighscore.innerText = "+" + highscoreadd;
+                addhighscore.textContent = "+" + highscoreadd;
+                addhighscore.className = "show";
+                setTimeout(function() {
+                    addhighscore.className = "hide";
+                }, 500);
+            }
             addscore.innerText = "+" + add;
             addscore.textContent = "+" + add;
             addscore.className = "show";
@@ -325,4 +345,23 @@ window.onload = function() {
     }
     document.onkeyup = keyUp;
     //    disableSelection(document.body);
+}
+
+function gamerestart() {
+    var scoreBar = document.getElementById('score');
+    var stage = document.getElementById('stage');
+    removeAllChildNodes(stage)
+    gameObj.points.score = 0;
+    gameObj.stage = [];
+    scoreBar.innerText = 0;
+    scoreBar.textContent = 0;
+    gameObj.intiStage();
+    gameObj.newBox();
+    console.log(stage)
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }

@@ -15,20 +15,21 @@ p {
     left: -10px;
 }
 
-
-
 .container {
     margin: auto;
-    margin-top: 84.5px;
+    margin-top: 30px;
     width: 452px;
-    height: 600px;
+    height: 650px;
     overflow: hidden;
     position: relative;
+    padding-bottom: 30px;
 }
 
 .logo {
     margin-top: 20px;
-    padding-left: 5%;
+    text-align: center;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
     background: #7289DA;
     width: 35%;
     font-size: 70px;
@@ -40,6 +41,7 @@ p {
 }
 
 .scoreBar {
+    border-radius: 0 25px 0 0;
     width: 50%;
     float: right;
     background: #23272A;
@@ -94,18 +96,72 @@ p {
     -webkit-transition: all .5s ease;
 }
 
+.highscoreBar {
+    border-radius: 0 0 25px 25px;
+    width: 430px;
+    background: #23272A;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    margin-top: 327px;
+    margin-right: 2px;
+}
+
+.restart_btn {
+    border-radius: 50px;
+    width: 450px;
+    background: #23272A;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    margin-top: 407px;
+    margin-right: 2px;
+}
+
+#highscore {
+    font-size: 50px;
+}
+
+#addHighScore {
+    position: absolute;
+    bottom: 0px;
+    font-size: 30px;
+    color: #999;
+    opacity: .8;
+    top: 4px;
+    right: 0;
+}
+
+#addHighScore.show {
+    opacity: .8;
+    transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+}
+
+#addHighScore.hide {
+    opacity: 0;
+    transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+}
+
 #stage {
     background: #23272A;
     cursor: pointer;
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none;
-    position: absolute;
+    position: relative;
     width: 450px;
     height: 450px;
     top: 50%;
     left: 0;
-    margin-top: -200px;
+    margin-top: -225px;
     z-index: 1;
 }
 

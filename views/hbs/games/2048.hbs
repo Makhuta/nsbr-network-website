@@ -25,7 +25,7 @@
 
     <div class="content_div">
 
-      
+
       <div class="container">
         <div class="logo">2048</div>
         <div class="scoreBar">
@@ -34,9 +34,12 @@
           <div id="addScore"></div>
         </div>
         <div id="stage"></div>
-        <!--<div id="gameOver hide">-->
-        <!--<div class="overText">GameOver!</div>-->
-        <!--</div>-->
+        <div class="highscoreBar">
+          <label style="position: relative; top:-13px;">highscore:</label>
+          <label id="highscore"> 0</label>
+          <div id="addHighScore"></div>
+        </div>
+        <button class="restart_btn" onclick="gamerestart()">Restart</button>
       </div>
 
     </div>
