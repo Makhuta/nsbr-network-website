@@ -357,7 +357,7 @@ function gamerestart() {
     scoreBar.textContent = 0;
     gameObj.intiStage();
     gameObj.newBox();
-    console.log(stage)
+    //console.log(stage)
 }
 
 function removeAllChildNodes(parent) {
