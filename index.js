@@ -41,7 +41,7 @@ app.use("/img", express.static(__dirname + "/public/img"))
 
 
 app.get("/*", async function(req, res) {
-    item_list = await item_list
+    (await item_list).hbs.categories.sort((a, b) => a.id - b.id)
     language_list = await language_list
     let item_list_all = util.inspect(item_list, false, null, true)
     let languagem_list_all = util.inspect(language_list, false, null, true)
@@ -73,7 +73,7 @@ app.get("/*", async function(req, res) {
         return
     }
 
-    //console.log(language)
+    //console.log(item_list_all)
 
 
     config.site = await require("./src/find_in_json").run({ json: (await item_list).hbs.categories, search_value: site })

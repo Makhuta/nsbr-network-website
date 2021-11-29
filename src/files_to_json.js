@@ -46,7 +46,8 @@ module.exports = {
         }
 
         let first_options = {
-            name: "default"[0].toUpperCase() + "default".slice(1),
+            id: -1,
+            name: "default" [0].toUpperCase() + "default".slice(1),
             files: location
         }
 
@@ -66,7 +67,7 @@ module.exports = {
         }
 
         first_options = {
-            name: "default"[0].toUpperCase() + "default".slice(1),
+            name: "default" [0].toUpperCase() + "default".slice(1),
             files: location
         }
 
@@ -80,7 +81,10 @@ module.exports = {
             for (let ft = 0; ft < hbs_subdir_info.files.length; ft++) {
                 temp_all_files.push(`${current_folder.toLowerCase()}/${hbs_subdir_info.files[ft].toLowerCase()}`)
             }
-            hbs_subdir_info.files = temp_all_files
+            hbs_subdir_info.files = temp_all_files.filter(name => {
+                let name_end = name.split(".")[1]
+                if (name_end != `json`) return true
+            })
             folder_list.hbs.all_files = all_files_type.concat(hbs_subdir_info.files)
 
             location = []
@@ -95,7 +99,9 @@ module.exports = {
                     location: `${folder}hbs/${hbs_subdir_info.files[nf]}`
                 })
             }
+            let folder_id = require(`${folder}hbs/${current_folder.toLowerCase()}/info.json`).id
             let options = {
+                id: folder_id,
                 name: current_folder[0].toUpperCase() + current_folder.slice(1),
                 files: location
             }
