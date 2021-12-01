@@ -1,4 +1,4 @@
-var highscore = 0;
+var highscore = getCookie("highscore") ? getCookie("highscore") : 0;
 
 var gameObj = {
     points: {
@@ -17,6 +17,9 @@ var gameObj = {
                 };
             }
         }
+        var highscoreBar = document.getElementById('highscore');
+        highscoreBar.innerText = highscore;
+        highscoreBar.textContent = highscore;
 
     },
 
@@ -101,6 +104,7 @@ var gameObj = {
         var highscoreBar = document.getElementById('highscore');
         if (this.points.score > this.points.highscore) {
             this.points.highscore = highscore = this.points.score
+            document.cookie = `highscore=${this.points.score}`
             highscoreBar.innerText = this.points.score;
             highscoreBar.textContent = this.points.score;
         }
@@ -364,4 +368,21 @@ function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return undefined;
 }
