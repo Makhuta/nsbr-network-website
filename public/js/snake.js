@@ -2,6 +2,8 @@ var variables = getCookie("variables") ? JSON.parse(getCookie("variables")) : {}
 var highscore = variables.hssnake ? variables.hssnake : 0
 var speed = 10;
 
+var keypressed = false;
+
 document.getElementById('highscore').innerText = highscore;
 document.getElementById('highscore').textContent = highscore;
 
@@ -35,7 +37,7 @@ var apple = {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-    // game loop
+// game loop
 function loop() {
     let score = snake.cells.length - 4
     if (score >= 0) {
@@ -58,11 +60,13 @@ function loop() {
     if (++count < speed) {
         return;
     }
-
+    
+    keypressed = false
     count = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // move snake by it's velocity
+    
+        // move snake by it's velocity
     snake.x += snake.dx;
     snake.y += snake.dy;
 
@@ -133,23 +137,28 @@ document.addEventListener('keydown', function(e) {
     // not already moving on the same axis (pressing left while moving
     // left won't do anything, and pressing right while moving left
     // shouldn't let you collide with your own body)
+    if (keypressed) return
         // left arrow key
     if (e.which === 37 && snake.dx === 0) {
+        keypressed = true
         snake.dx = -grid;
         snake.dy = 0;
     }
     // up arrow key
     else if (e.which === 38 && snake.dy === 0) {
+        keypressed = true
         snake.dy = -grid;
         snake.dx = 0;
     }
     // right arrow key
     else if (e.which === 39 && snake.dx === 0) {
+        keypressed = true
         snake.dx = grid;
         snake.dy = 0;
     }
     // down arrow key
     else if (e.which === 40 && snake.dy === 0) {
+        keypressed = true
         snake.dy = grid;
         snake.dx = 0;
     }
