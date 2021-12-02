@@ -1,4 +1,5 @@
-var highscore = getCookie("highscore") ? getCookie("highscore") : 0;
+var variables = getCookie("variables") ? JSON.parse(getCookie("variables")) : {};
+var highscore = variables.hspacman ? variables.hspacman : 0
 
 document.getElementById('highscore').innerText = highscore;
 document.getElementById('highscore').textContent = highscore;
@@ -295,7 +296,8 @@ Pacman.User = function(game, map) {
             var highscoreBar = document.getElementById('highscore');
             highscoreBar.innerText = score;
             highscoreBar.textContent = score;
-            document.cookie = `highscore=${score}`
+            variables.hspacman = score
+            document.cookie = `variables=${JSON.stringify(variables)}`
         }
     };
 

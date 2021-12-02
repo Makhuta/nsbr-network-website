@@ -1,4 +1,5 @@
-var highscore = getCookie("highscore") ? getCookie("highscore") : 0;
+var variables = getCookie("variables") ? JSON.parse(getCookie("variables")) : {};
+var highscore = variables.hssnake ? variables.hssnake : 0
 var speed = 10;
 
 document.getElementById('highscore').innerText = highscore;
@@ -45,7 +46,8 @@ function loop() {
             var highscoreBar = document.getElementById('highscore');
             highscoreBar.innerText = score;
             highscoreBar.textContent = score;
-            document.cookie = `highscore=${score}`
+            variables.hssnake = score
+            document.cookie = `variables=${JSON.stringify(variables)}`
         }
     }
 

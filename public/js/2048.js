@@ -1,4 +1,5 @@
-var highscore = getCookie("highscore") ? getCookie("highscore") : 0;
+var variables = getCookie("variables") ? JSON.parse(getCookie("variables")) : {};
+var highscore = variables.hs2048 ? variables.hs2048 : 0
 
 var gameObj = {
     points: {
@@ -104,7 +105,8 @@ var gameObj = {
         var highscoreBar = document.getElementById('highscore');
         if (this.points.score > this.points.highscore) {
             this.points.highscore = highscore = this.points.score
-            document.cookie = `highscore=${this.points.score}`
+            variables.hs2048 = highscore
+            document.cookie = `variables=${JSON.stringify(variables)}`
             highscoreBar.innerText = this.points.score;
             highscoreBar.textContent = this.points.score;
         }
@@ -299,7 +301,7 @@ function handleEnd(evt) {
 window.onload = function() {
     gameObj.intiStage();
     gameObj.newBox();
-    //    gameObj.newBox();
+        //    gameObj.newBox();
     var stage = document.getElementById('stage');
     document.onmousedown = function(e) {
         var event = e || window.event;
