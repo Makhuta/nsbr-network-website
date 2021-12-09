@@ -1,5 +1,3 @@
-<script src="modernizr-custom.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <body>
     <section>
         <div class="title_div">
@@ -26,15 +24,25 @@
 
 
         <div class="content_div">
+
+
             <div class="container">
-                <div class="logo">Pacman</div>
-                <div class="highscoreBar">
-                    <label style="position: relative; top:-13px; left:10px">highscore:</label>
-                    <label id="highscore"> 0</label>
+                <div class="logo">Sudoku</div>
+                <div class="scoreBar">
+                    <label style="position: relative; top:-13px;">score:</label>
+                    <label id="score"> 0</label>
                     <div id="addScore"></div>
                 </div>
-                <div id="pacman"></div>
+
+                <div id="sudoku_container"></div>
+                <div class="highscoreBar">
+                    <label style="position: relative; top:-13px;">highscore:</label>
+                    <label id="highscore"> 0</label>
+                    <div id="addHighScore"></div>
+                </div>
+                <a class="restart" href="#">New Game</a>
             </div>
+
         </div>
 
 
